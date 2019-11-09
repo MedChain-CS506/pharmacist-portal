@@ -17,7 +17,7 @@ interface signInProps {
     }
 }
 
-export const SignInDialog: React.FC<signInProps> = ({ dialogProps }) => {
+const SignInDialog: React.FC<signInProps> = ({ dialogProps }) => {
     return (
         <Dialog
             fullWidth

@@ -5,3 +5,10 @@ type SignInDialog = {
         onClose?: () => void
     }
 }
+
+type SignUpDialog = {
+    dialogProps: {
+        open: boolean,
+        onClose?: () => void
+    }
+}
