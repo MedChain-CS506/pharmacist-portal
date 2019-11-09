@@ -1,17 +1,42 @@
-import React from 'react';
-import Container from '@material-ui/core/Container';
-import Typography from '@material-ui/core/Typography';
-import Box from '@material-ui/core/Box';
+import React, { useState } from 'react';
+
+//* Components
+import Navbar from './components/layout/Navbar';
+import Loading from './components/layout/Loading';
+import DialogHost from './components/layout/Dialog/DialogHost';
 
 const App: React.FC = () => {
+  const [signedIn] = useState(false)
+  const [ready, setReady] = useState(true)
+  const [dialog, setDialog] = useState({
+    // signUpDialog: false,
+    signInDialog: false,
+    // signOutDialog: false
+  });
+
   return (
-    <Container maxWidth="sm">
-      <Box my={4}>
-        <Typography variant="h4" component="h1" gutterBottom>
-          Hello
-        </Typography>
-      </Box>
-    </Container>
+    <>
+      {!ready && <Loading />}
+      {ready && (
+        <>
+          <Navbar 
+            signedIn={signedIn} 
+            onSignInClick={() => setDialog({...dialog, signInDialog: true })}
+          />
+          <DialogHost 
+            signedIn={signedIn}
+            dialogs={{
+              signInDialog: {
+                dialogProps: {
+                  open: dialog.signInDialog,
+                  onClose: () => setDialog({ ...dialog, signInDialog: false })
+                }
+              }
+            }}
+          />
+        </>
+      )}
+    </>
   );
 }
 
