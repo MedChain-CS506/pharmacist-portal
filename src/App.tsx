@@ -14,7 +14,7 @@ const App: React.FC = () => {
   const [dialog, setDialog] = useState({
     signUpDialog: false,
     signInDialog: false,
-    // signOutDialog: false
+    signOutDialog: false
   });
 
   return (
@@ -24,7 +24,9 @@ const App: React.FC = () => {
         <>
           <Navbar 
             signedIn={signedIn} 
+            onSignUpClick={() => setDialog({...dialog, signUpDialog: true })}
             onSignInClick={() => setDialog({ ...dialog, signInDialog: true })}
+            onSignOutClick={() => setDialog({...dialog, signOutDialog: true })}
           />
 
           <Routes signedIn={signedIn} />
@@ -43,6 +45,13 @@ const App: React.FC = () => {
                 dialogProps: {
                   open: dialog.signInDialog,
                   onClose: () => setDialog({ ...dialog, signInDialog: false })
+                }
+              },
+
+              signOutDialog: {
+                dialogProps: {
+                  open: dialog.signOutDialog,
+                  onClose: () => setDialog({ ...dialog, signOutDialog: false })
                 }
               }
             }}

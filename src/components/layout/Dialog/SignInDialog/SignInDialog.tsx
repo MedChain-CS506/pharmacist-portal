@@ -10,14 +10,14 @@ import DialogTitle from '@material-ui/core/DialogTitle';
 // import Button from '@material-ui/core/Button';
 // import TextField from '@material-ui/core/TextField';
 
-interface signInProps {
+interface SignInProps {
     dialogProps: {
         open: boolean
         onClose?: () => void
     }
 }
 
-const SignInDialog: React.FC<signInProps> = ({ dialogProps }) => {
+const SignInDialog: React.FC<SignInProps> = ({ dialogProps }) => {
     return (
         <Dialog
             fullWidth

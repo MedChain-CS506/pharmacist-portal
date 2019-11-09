@@ -12,3 +12,10 @@ type SignUpDialog = {
         onClose?: () => void
     }
 }
+
+type SignOutDialog = {
+    dialogProps: {
+        open: boolean,
+        onClose?: () => void
+    }
+}

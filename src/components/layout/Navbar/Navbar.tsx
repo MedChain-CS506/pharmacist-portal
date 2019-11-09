@@ -9,6 +9,8 @@ import Box from '@material-ui/core/Box';
 import Button from '@material-ui/core/Button';
 import IconButton from '@material-ui/core/IconButton';
 import Avatar from '@material-ui/core/Avatar';
+import Menu from '@material-ui/core/Menu';
+import MenuItem from '@material-ui/core/MenuItem';
 
 const useStyles = makeStyles({
     root: {
@@ -19,13 +21,19 @@ const useStyles = makeStyles({
 interface NavbarProps {
     signedIn: boolean;
     onSignInClick?: () => void
-    onSettingsClick?: () => void
+    onSignUpClick?: () => void
+    onSignOutClick?: () => void
 }
 
-const Navbar: React.FC<NavbarProps> = ({ signedIn, onSignInClick }) => {
+const Navbar: React.FC<NavbarProps> = ({ signedIn, onSignInClick, onSignUpClick, onSignOutClick }) => {
     const classes = useStyles();
 
-    //const [anchorEl, setAnchorEl] = useState(null)
+    const [anchorEl, setAnchorEl] = useState(null)
+
+    const handleSignOutClick = () => {
+        setAnchorEl(null);
+        //onSignOutClick();
+    };
 
     return (
         <AppBar className={classes.root} position="static">
@@ -42,9 +50,20 @@ const Navbar: React.FC<NavbarProps> = ({ signedIn, onSignInClick }) => {
                             color="inherit"
                             //disabled={performingAction}
                             //onClick={event => setAnchorEl(event.currentTarget)}
+                            onClick={onSignOutClick}
                         >
                             <Avatar alt="Avatar"></Avatar>
                         </IconButton>
+
+                        <Menu 
+                            anchorEl={anchorEl}
+                            open={Boolean(anchorEl)}
+                            onClose={() => setAnchorEl(null)}
+                        >
+                            <MenuItem onClick={handleSignOutClick}>
+                                Sign out
+                            </MenuItem>
+                        </Menu>
                     </>
                 )}
 
@@ -55,16 +74,16 @@ const Navbar: React.FC<NavbarProps> = ({ signedIn, onSignInClick }) => {
                                 color="secondary"
                                 //disabled={performingAction}
                                 variant="contained"
-                                //onClick={onSignUpClick}
+                                onClick={onSignUpClick}
                             >
                                 Sign Up
                             </Button>
                         </Box>
                             <Button
-                            color="secondary"
-                            //disabled={performingAction}
-                            variant="contained"
-                            onClick={onSignInClick}
+                                color="secondary"
+                                //disabled={performingAction}
+                                variant="contained"
+                                onClick={onSignInClick}
                             >
                             Sign In
                         </Button>

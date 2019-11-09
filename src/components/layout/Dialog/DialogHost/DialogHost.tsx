@@ -4,18 +4,21 @@ import Hidden from '@material-ui/core/Hidden';
 
 import SignInDialog from '../SignInDialog';
 import SignUpDialog from '../SignUpDialog';
+import SignOutDialog from '../SignOutDialog';
 
 interface DialogProps {
     signedIn: boolean
     dialogs: {
       signInDialog: SignInDialog
       signUpDialog: SignUpDialog
+      signOutDialog: SignOutDialog
     }
 }
 
 const DialogHost: React.FC<DialogProps> = ({ signedIn = false, dialogs }) => {
   const { signInDialog } = dialogs;
   const { signUpDialog } = dialogs;
+  const { signOutDialog } = dialogs;
 
   return (
     <>
@@ -50,6 +53,12 @@ const DialogHost: React.FC<DialogProps> = ({ signedIn = false, dialogs }) => {
           </>
         )}
       </Hidden>
+
+      {signedIn && (
+        <>
+          <SignOutDialog dialogProps={signOutDialog.dialogProps} />
+        </>
+      )}
     </>
   );
 };
