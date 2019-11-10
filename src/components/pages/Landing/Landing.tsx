@@ -38,8 +38,7 @@ const Landing: React.FC<LandingProps> = ({ signedIn }) => {
   if (signedIn) {
     return (
       <>
-        {/* <Search />
-        <Patients /> */}
+        {/* <Search /> */}
       </>
     );
   }
